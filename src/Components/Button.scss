@@ -9,10 +9,12 @@
     padding: 0.5rem 2rem;
     margin-right: 1rem;
     background-color: rgba(0, 0, 0, .2);
+
+
+  &:hover {
+      color: #000;
+      background: #fff;
+      transition: all 0.2s;
+    }
   }
 
-  .button:hover {
-    color: #000;
-    background: #fff;
-    transition: all 0.2s;
-  }

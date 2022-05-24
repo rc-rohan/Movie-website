@@ -1,11 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import axios from "axios";
-import React, { useEffect, useState,useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import requests from "../request";
 import Modal from "./Modal";
-import "./Row.css";
-
+import "./Row.scss";
 
 const Row = ({ title, fetchURL }) => {
   const [movies, setMovies] = useState([]);
@@ -46,10 +45,10 @@ const Row = ({ title, fetchURL }) => {
       }
       <div className="row">
         <h2>{title}</h2>
-        <div className="rowPosters">
+        <div className="row__posters">
           {movies.map((movie) => (
             <div
-              className="rowCards"
+              className="row__cards"
               key={movie.id}
               onClick={() => {
                 setMovieDetails(movie);
@@ -57,12 +56,12 @@ const Row = ({ title, fetchURL }) => {
               }}
             >
               <img
-                className="images"
+                className="row__cards__images"
                 src={`${requests.img_url}${movie?.backdrop_path}`}
                 alt={movie.name}
               />
               <b>{movie.title || movie.name}</b>
-              <p className="rating">
+              <p className="row__cards__rating">
                 <small>Rating: </small>
                 {/* Remove all these logics of JS from here. */}
                 {[...Array(getRating(movie.vote_average))].map((el, key) => {
@@ -73,8 +72,8 @@ const Row = ({ title, fetchURL }) => {
                   );
                 })}
               </p>
-              <div className="description">
-                <p className="text">
+              <div className="row__cards__description">
+                <p>
                   {truncate(movie.overview, 200)}
                   <a href="#">
                     {" "}

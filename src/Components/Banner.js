@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from './Button'
 import requests from "../request";
 import axios from "axios";
-import "./Banner.css";
+import "./Banner.scss";
 
 const Banner = () => {
   const [movie, setMovie] = useState([]);
@@ -40,17 +40,17 @@ const Banner = () => {
         backgroundPosition: "center center",
       }}
     >
-      <div className="bannerContents">
-        <h1 className="bannerTitle">
+      <div className="banner__contents">
+        <h1 className="banner__contents__title">
           {movie?.name|| movie?.original_name}
         </h1>
-        <div className="bannerButtons">
-          <Button className="bannerButton" content="Play"/>
-          <Button className="bannerButton" content="My List"/>
+        <div className="banner__contents__buttons">
+          <Button  content="Play"/>
+          <Button  content="My List"/>
         </div>
-        <h1 className="bannerDescription">{truncate(movie?.overview,150)}</h1>
+        <h1 className="banner__contents__description">{truncate(movie?.overview,150)}</h1>
       </div>
-      <div className='bannerFadeBottom'></div>
+      <div className='banner__contents--fade-bottom'></div>
     </header>
   );
 }

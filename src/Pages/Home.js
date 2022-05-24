@@ -1,7 +1,7 @@
 import Banner from "../Components/Banner";
 import Row from "../Components/Row";
 import requests from "../request";
-import "./home.css";
+import "./home.scss";
 
 const Home = () => {
   return (

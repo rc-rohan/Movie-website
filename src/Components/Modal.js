@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
 import requests from "../request";
 import Button from "./Button";
-import "./Modal.css";
+import "./Modal.scss";
 
 const Modal = (props) => {
   const closeOnEscapeKeyDown = (e) => {
@@ -30,21 +30,21 @@ const Modal = (props) => {
       timeout={{ enter: 0, exit: 300 }}
     >
       <div className="modal" onClick={props.onClose}>
-        <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-          <div className="modalImage">
+        <div className="modal__content" onClick={(e) => e.stopPropagation()}>
+          <div>
             <img
-              className="image"
+              className="modal__content__image"
               src={`${requests.img_url}${props.movieDetails?.backdrop_path}`}
               alt={props.movieDetails?.title}
             />
           </div>
-          <div className="modalHeader">
-            <h4 className="modalTitle">
+          <div className="modal__content__header">
+            <h4 className="modal__content__title">
               <b>{props.movieDetails.title || props?.movieDetails?.name}</b>
             </h4>
           </div>
-          <div className="modalBody">
-            <p className="rating">
+          <div className="modal__content__body">
+            <p className="modal__content__rating">
               {[
                 ...Array(getRating(props?.movieDetails?.vote_average) || 0),
               ].map((el, key) => {
@@ -57,8 +57,8 @@ const Modal = (props) => {
             </p>
             {props.movieDetails.overview}
           </div>
-          <div className="modalButton">
-            <Button onClick={props.onClose} content="Play" />
+          <div className="modal__content__button">
+            <Button content="Play" />
           </div>
         </div>
       </div>
