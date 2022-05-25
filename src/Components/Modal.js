@@ -35,10 +35,6 @@ const Modal = (props) => {
     };
   }, []);
 
-  // const getRating = (rating) => {
-  //   return Math.round((rating * 10) / 20);
-  // };
-
   const getRating = useCallback((rate) => Math.round((rate * 10) / 20), []);
 
   const ratings = useMemo(() => {

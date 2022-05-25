@@ -40,6 +40,14 @@ const Row = ({ title, fetchURL }) => {
     fetchData();
   }, [fetchURL]);
 
+  const onClickHandler = useCallback(
+    (movie) => {
+      setMovieDetails(movie);
+      setModal(true);
+    },
+    [movies]
+  );
+
   const getRating = useCallback(
     (rate) => Math.round((rate * 10) / 20),
     [movies]
@@ -65,14 +73,13 @@ const Row = ({ title, fetchURL }) => {
       <Modal movieDetails={movieDetails} onClose={setModal} show={modal} />
       <div className={styles.row}>
         <h2>{title}</h2>
-        <div className={styles.rows.posters} >
+        <div className={styles.rows.posters}>
           {movies.map((movie) => (
             <div
               className={styles.rows.cards}
               key={movie.id}
               onClick={() => {
-                setMovieDetails(movie);
-                setModal(true);
+                onClickHandler(movie);
               }}
             >
               <img
@@ -83,20 +90,10 @@ const Row = ({ title, fetchURL }) => {
               <b>{movie.title || movie.name}</b>
               <p className={styles.rows.ratings}>
                 <small>Rating: </small>
-                {/* {[...Array(getRating(movie.vote_average))].map((el, key) => (
-                  <span key={key} className="star">
-                    &#9733;
-                  </span>
-                ))} */}
                 {ratings(movie?.vote_average)}
               </p>
               <div className={styles.rows.description}>
-                <p>
-                  {truncate(movie.overview, limit)}
-                  <a href="#">
-                    {movie?.overview.length <= limit ? "" : "read more"}
-                  </a>
-                </p>
+                <p>{truncate(movie.overview, limit)}</p>
               </div>
             </div>
           ))}
