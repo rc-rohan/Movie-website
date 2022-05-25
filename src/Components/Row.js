@@ -25,7 +25,8 @@ const styles = {
   },
 };
 
-const Row = ({ title, fetchURL }) => {
+const Row = (props) => {
+  const { title, fetchURL } = props;
   const limit = 200;
   const [movies, setMovies] = useState([]);
   const [modal, setModal] = useState(false);
