@@ -40,12 +40,9 @@
       background-color: #000;
       transition: all 0.3s ease-in-out;
       transform: translateY(-200px);
+      text-align: center;
 
       &__image {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
           object-fit: contain;
         }
 

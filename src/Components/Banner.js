@@ -4,23 +4,23 @@ import requests from "../request";
 import axios from "axios";
 import "./Banner.scss";
 
-  var styles = {
-    banner: "banner",
-    contents: {
-      content: "banner__contents",
-      title: "banner__contents__title",
-      buttons: "banner__contents__buttons",
-      description: "banner__contents__description",
-      contentsFadeBottom: "banner__contents--fade-bottom",
-    },
-  };
+var styles = {
+  banner: "banner",
+  contents: {
+    content: "banner__contents",
+    title: "banner__contents__title",
+    buttons: "banner__contents__buttons",
+    description: "banner__contents__description",
+    contentsFadeBottom: "banner__contents--fade-bottom",
+  },
+};
 
 const Banner = () => {
   const [movie, setMovie] = useState([]);
-  const limit=200;
+  const limit = 200;
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const request = await axios.get(
         `${requests.base_url}${requests.fetchTopRated}`
       );
@@ -30,7 +30,7 @@ const Banner = () => {
         ]
       );
       return request;
-    }
+    };
     fetchData();
   }, []);
 

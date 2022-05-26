@@ -33,11 +33,11 @@ const Row = (props) => {
   const [movieDetails, setMovieDetails] = useState({});
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const request = await axios.get(`${requests.base_url}${fetchURL}`);
       // console.log(title, request);
       setMovies(request.data.results);
-    }
+    };
     fetchData();
   }, [fetchURL]);
 
@@ -69,35 +69,36 @@ const Row = (props) => {
     [movies]
   );
 
+  const getMovieCardDetials = (movie) =>{
+    return (
+      <div
+        className={styles.rows.cards}
+        key={movie.id}
+        onClick={() => onClickHandler(movie)}
+      >
+        <img
+          className={styles.rows.images}
+          src={`${requests.img_url}${movie?.backdrop_path}`}
+          alt={movie.name}
+        />
+        <b>{movie.title || movie.name}</b>
+        <p className={styles.rows.ratings}>
+          <small>Rating: </small>
+          {ratings(movie?.vote_average)}
+        </p>
+        <div className={styles.rows.description}>
+          <p>{truncate(movie.overview, limit)}</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div>
       <Modal movieDetails={movieDetails} onClose={setModal} show={modal} />
       <div className={styles.row}>
         <h2>{title}</h2>
         <div className={styles.rows.posters}>
-          {movies.map((movie) => (
-            <div
-              className={styles.rows.cards}
-              key={movie.id}
-              onClick={() => {
-                onClickHandler(movie);
-              }}
-            >
-              <img
-                className={styles.rows.images}
-                src={`${requests.img_url}${movie?.backdrop_path}`}
-                alt={movie.name}
-              />
-              <b>{movie.title || movie.name}</b>
-              <p className={styles.rows.ratings}>
-                <small>Rating: </small>
-                {ratings(movie?.vote_average)}
-              </p>
-              <div className={styles.rows.description}>
-                <p>{truncate(movie.overview, limit)}</p>
-              </div>
-            </div>
-          ))}
+          {movies.map(getMovieCardDetials)}
         </div>
       </div>
     </div>

@@ -45,19 +45,17 @@ const Modal = (props) => {
         </span>
       )
     );
-  }, [movieDetails]);
+  }, [movieDetails?.vote_average]);
 
   return ReactDOM.createPortal(
     <CSSTransition in={show} unmountOnExit timeout={{ enter: 0, exit: 300 }}>
       <div className={styles.modal} onClick={() => onClose(false)}>
         <div className={styles.contents.content} onClick={(e) => e.stopPropagation()}>
-          <div>
             <img
               className={styles.contents.image}
               src={`${requests.img_url}${movieDetails?.backdrop_path}`}
               alt={movieDetails?.title}
             />
-          </div>
           <div className={styles.contents.header}>
             <h4 className={styles.contents.title}>
               <b>{movieDetails?.title || movieDetails?.name}</b>
